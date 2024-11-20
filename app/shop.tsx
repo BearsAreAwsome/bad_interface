@@ -1,7 +1,9 @@
+'use client'
 //Base page template created by v0.
 //Font by 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { useRef } from "react"
 
 type Product = {
   id: number
@@ -10,6 +12,7 @@ type Product = {
   price: number
   imageUrl: string
 }
+
 
 const products: Product[] = [
   {
@@ -50,8 +53,11 @@ const products: Product[] = [
 ]
 
 export default function Page() {
+  const audio = useRef(new Audio("/114- Earthbound - Inside the Dungeon.mp3"))
+  audio.current.loop = true
+  audio.current.addEventListener("canplaythrough", (event) => {{audio.current.play()}})
   return (
-    
+    <div className="h-screen bg-cover bg-center" style={{backgroundImage: "url('images/earthboundBackground.gif')"}}>
       <div className="container mx-auto py-8">
         <h1 className="text-3xl font-bold mb-8 text-center font-[family-name:var(--font-saturn)]">Welcome to Our Shop</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -76,5 +82,6 @@ export default function Page() {
           ))}
         </div>
       </div>
+    </div>
   )
 }
