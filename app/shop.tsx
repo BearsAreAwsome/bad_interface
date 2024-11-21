@@ -22,35 +22,35 @@ const products: Product[] = [
   {
     id: 1,
     name: "Bad key machine",
-    description: "Have a key that doesnt work? Well the bad key machine can fix it right up. 100% guarenteed to break on use.",
+    description: "Have A key that doesnt work? Well the bad key machine can fix it right up. 100% guarenteed to break on use.",
     price: 99.99,
     imageUrl: "/images/badKeyMachine.png?height=200&width=200"
   },
   {
     id: 2,
     name: "Fly Honey",
-    description: "Delicious honey for flies. The favorite food of sentient piles of barf.",
+    description: "Delicious hoNey for flies. The favorite food of sentient piles of barf.",
     price: 34.99,
     imageUrl: "/images/flyHoney.png?height=200&width=200"
   },
   {
     id: 3,
     name: "Kraken Plushie",
-    description: "A meanacing sea monster, now in plushie form. Enjoy playing with this much more friendly version of kraken. Warning. Small chance of being a real kraken.",
+    description: "A meanacIng sea monster, now in plushie form. Enjoy playing with this much more friendly version of kraken. Warning. Small chance of being a real kraken.",
     price: 19.99,
     imageUrl: "images/kraken.png?height=200&width=200"
   },
   {
     id: 4,
     name: "Ego Orb",
-    description: "A creepy orb that seems to have this expression stuck on its face. Why? No one knows. Please buy it. It's scaring us",
+    description: "A cReepy orb that seems to have this expression stuck on its face. Why? No one knows. Please buy it. It's scaring us",
     price: 39.99,
     imageUrl: "/images/egoOrb.png?height=200&width=200"
   },
   {
     id: 5,
     name: "Mr. Saturn",
-    description: "Mr. Saturn Boing. Very rare Zoom. Very Dakota!",
+    description: "Mr. SatuRn Boing. Very rare Zoom. Very Dakota!",
     price: 0,
     imageUrl: "/images/Clay_Mr_Saturn_Figure.png?height=200&width=200"
   }
@@ -59,13 +59,14 @@ const products: Product[] = [
 
 
 export default function Page() {
-
+  const debug = false;
   const router = useRouter()
   const backToStart = ()=>{
     router.push("/")
   }
   useEffect(() => {
   console.log("mount")
+  if(!debug) {
   const timer = setInterval(() => {
         console.log("test")
         let navBack = true;
@@ -86,7 +87,10 @@ export default function Page() {
     console.log("cleanup")
     clearInterval(timer)
   }  
-  })
+  }})
+  const addCart = () => {
+    router.push("/cart")
+  }
   return (
     <div className="h-screen bg-cover bg-center" style={{backgroundImage: "url('images/earthboundBackground.gif')"}}>
       <div className="container mx-auto py-8">
@@ -95,7 +99,7 @@ export default function Page() {
           {products.map((product) => (
             <Card key={product.id} className="flex flex-col pl-12 pr--5 pt-10">
               <CardHeader>
-                <CardTitle className="font-[family-name:var(--font-saturn)] text-slate-100">{product.name}</CardTitle>
+                <CardTitle className="font-[family-name:var(--font-saturn)] text-slate-200">{product.name}</CardTitle>
               </CardHeader>
               <CardContent className="flex-grow">
                 <img
@@ -103,11 +107,11 @@ export default function Page() {
                   alt={product.name}
                   className="w-full h-48 object-cover mb-4 rounded-md"
                 />
-                <p className="text-sm  font-[family-name:var(--font-saturn)] tracking-widest text-center text-slate-100">{product.description}</p>
-                <p className="text-lg font-bold mt-2 font-[family-name:var(--font-saturn)] text-slate-100">${product.price.toFixed(2)}</p>
+                <p className="text-sm  font-[family-name:var(--font-saturn)] tracking-widest text-center text-slate-200">{product.description}</p>
+                <p className="text-lg font-bold mt-2 font-[family-name:var(--font-saturn)] text-slate-200">${product.price.toFixed(2)}</p>
               </CardContent>
               <CardFooter>
-                <Button className="w-full font-[family-name:var(--font-saturn)] bg-white">Add to Cart</Button>
+                <Button className="w-full font-[family-name:var(--font-saturn)] bg-white" onClick={addCart}>Add to Cart</Button>
               </CardFooter>
             </Card>
           ))}
