@@ -3,7 +3,6 @@
 //Font by 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { useSound } from "./sound"
 
 type Product = {
   id: number
@@ -54,17 +53,16 @@ const products: Product[] = [
 ]
 
 export default function Page() {
-  const {play} = useSound("/114- Earthbound - Inside the Dungeon.mp3")
-  play();
+  
   return (
     <div className="h-screen bg-cover bg-center" style={{backgroundImage: "url('images/earthboundBackground.gif')"}}>
       <div className="container mx-auto py-8">
-        <h1 className="text-3xl font-bold mb-8 text-center font-[family-name:var(--font-saturn)]">Welcome to Our Shop</h1>
+        <h1 className="text-3xl font-bold mb-8 text-center font-[family-name:var(--font-saturn)] text-xs">Welcome to Our Shop</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
             <Card key={product.id} className="flex flex-col">
               <CardHeader>
-                <CardTitle className="font-[family-name:var(--font-saturn)]">{product.name}</CardTitle>
+                <CardTitle className="font-[family-name:var(--font-saturn)] text-slate-100">{product.name}</CardTitle>
               </CardHeader>
               <CardContent className="flex-grow">
                 <img
@@ -72,11 +70,11 @@ export default function Page() {
                   alt={product.name}
                   className="w-full h-48 object-cover mb-4 rounded-md"
                 />
-                <p className="text-sm  font-[family-name:var(--font-saturn)]">{product.description}</p>
-                <p className="text-lg font-bold mt-2 font-[family-name:var(--font-saturn)]">${product.price.toFixed(2)}</p>
+                <p className="text-sm  font-[family-name:var(--font-saturn)] tracking-widest text-center text-slate-100">{product.description}</p>
+                <p className="text-lg font-bold mt-2 font-[family-name:var(--font-saturn)] text-slate-100">${product.price.toFixed(2)}</p>
               </CardContent>
               <CardFooter>
-                <Button className="w-full font-[family-name:var(--font-saturn)]">Add to Cart</Button>
+                <Button className="w-full font-[family-name:var(--font-saturn)] bg-white">Add to Cart</Button>
               </CardFooter>
             </Card>
           ))}
