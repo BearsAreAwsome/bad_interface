@@ -3,7 +3,7 @@
 //Font by 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { AudioHTMLAttributes, useEffect, useRef, useState } from "react"
+import { soundHook } from "./sound"
 
 type Product = {
   id: number
@@ -12,6 +12,7 @@ type Product = {
   price: number
   imageUrl: string
 }
+
 
 
 const products: Product[] = [
@@ -53,9 +54,8 @@ const products: Product[] = [
 ]
 
 export default function Page() {
-  const [audio] = useState<HTMLAudioElement>(new Audio("/114- Earthbound - Inside the Dungeon.mp3"))
-  audio.loop = true
-  audio.addEventListener("canplaythrough", () => {{audio.play()}})
+  const {play} = soundHook("/114- Earthbound - Inside the Dungeon.mp3")
+  play();
   return (
     <div className="h-screen bg-cover bg-center" style={{backgroundImage: "url('images/earthboundBackground.gif')"}}>
       <div className="container mx-auto py-8">
