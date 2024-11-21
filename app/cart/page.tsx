@@ -17,7 +17,6 @@ export default function CartPage() {
   const { cart, setCart } = useCart()
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [newItemName, setNewItemName] = useState('')
-  var addCart: string[] = []
 
 const recognizedItems = ['A', 'hoNey', 'meanacIng', 'cReepy', 'SatuRn']
 const itemNames = ['Bad key machine', 'Fly Honey', 'Kraken Plushie', 'Ego Orb', 'Mr. Saturn']
@@ -35,7 +34,7 @@ const itemNames = ['Bad key machine', 'Fly Honey', 'Kraken Plushie', 'Ego Orb', 
   }
   const router = useRouter()
   const checkout = () => {
-    addCart = []
+    const addCart: string[] = []
     cartItems.forEach((item) => {addCart.push(item.name)})
     console.log(addCart)
     setCart(addCart)
