@@ -1,6 +1,7 @@
+'use client'
 import { useEffect, useRef} from "react"
 
-export const soundHook = (audioSource: string | undefined) => {
+export const useSound = (audioSource: string | undefined) => {
     const soundRef = useRef<HTMLAudioElement>();
     useEffect(() => {
         soundRef.current = new Audio(audioSource)

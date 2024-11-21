@@ -3,7 +3,7 @@
 //Font by 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { soundHook } from "./sound"
+import { useSound } from "./sound"
 
 type Product = {
   id: number
@@ -54,7 +54,7 @@ const products: Product[] = [
 ]
 
 export default function Page() {
-  const {play} = soundHook("/114- Earthbound - Inside the Dungeon.mp3")
+  const {play} = useSound("/114- Earthbound - Inside the Dungeon.mp3")
   play();
   return (
     <div className="h-screen bg-cover bg-center" style={{backgroundImage: "url('images/earthboundBackground.gif')"}}>
