@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { CartProvider } from "./meta/context";
 
 const saturn = localFont({
   src: "./fonts/SenorSaturno-Aw9g.woff",
@@ -23,7 +24,9 @@ export default function RootLayout({
       <body
         className={`${saturn.variable} antialiased`}
       >
-        {children}
+        <CartProvider>
+          {children}
+        </CartProvider>
       </body>
     </html>
   );

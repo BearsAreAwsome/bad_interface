@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useRouter } from 'next/navigation'
 import { Bounce, toast, ToastContainer } from 'react-toastify'
+import { useCart } from '../meta/context'
 
 
 interface FormData {
@@ -31,6 +32,7 @@ interface FormData {
 }
 
 export default function ConsolidatedCheckout() {
+  const {cart} = useCart()
   const [step, setStep] = useState(1)
   const [formData, setFormData] = useState<FormData>({
     personalInfo: {},
@@ -57,7 +59,7 @@ export default function ConsolidatedCheckout() {
   }
   const debug = false;
   useEffect(() => {
-  console.log("mount")
+  console.log(cart)
   if(!debug) {
   const timer = setInterval(() => {
         console.log("test")
@@ -74,7 +76,7 @@ export default function ConsolidatedCheckout() {
           onClick: ()=>{navBack = false},
           onClose: ()=>{if(navBack){backToStart()}}
           });
-      }, 60000)
+      }, 30000)
   return function cleanup() {
     console.log("cleanup")
     clearInterval(timer)

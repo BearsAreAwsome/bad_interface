@@ -14,9 +14,10 @@ interface CartItem {
 }
 
 export default function CartPage() {
-  const { setCart } = useCart()
+  const { cart, setCart } = useCart()
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [newItemName, setNewItemName] = useState('')
+  var addCart: string[] = []
 
 const recognizedItems = ['A', 'hoNey', 'meanacIng', 'cReepy', 'SatuRn']
 const itemNames = ['Bad key machine', 'Fly Honey', 'Kraken Plushie', 'Ego Orb', 'Mr. Saturn']
@@ -27,9 +28,6 @@ const itemNames = ['Bad key machine', 'Fly Honey', 'Kraken Plushie', 'Ego Orb', 
       setCartItems([...cartItems, { id: Date.now(), name: itemNames[recognizedItems.indexOf(newItemName.trim())] }])
       setNewItemName('')
     }
-    const addCart: string[] = []
-    cartItems.forEach((item) => {addCart.push(item.name)})
-    setCart(addCart)
   }
 
   const removeItem = (id: number) => {
@@ -37,6 +35,11 @@ const itemNames = ['Bad key machine', 'Fly Honey', 'Kraken Plushie', 'Ego Orb', 
   }
   const router = useRouter()
   const checkout = () => {
+    addCart = []
+    cartItems.forEach((item) => {addCart.push(item.name)})
+    console.log(addCart)
+    setCart(addCart)
+    console.log(cart)
     router.push("/checkout")
   }
 
