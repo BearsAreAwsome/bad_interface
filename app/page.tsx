@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useSound } from "./sound";
+import { ToastContainer } from "react-toastify";
 
 
 
@@ -10,6 +11,7 @@ export default function Page() {
   const {play} = useSound("/114- Earthbound - Inside the Dungeon.mp3")
   return (
     <div className="h-screen bg-cover bg-center" style={{backgroundImage: "url('images/earthboundBackground.gif')"}}>
+      <ToastContainer></ToastContainer>
       <Button onClick={()=>{router.push("/shop"); play()}}>Enter Webpage</Button>
     </div>
   );

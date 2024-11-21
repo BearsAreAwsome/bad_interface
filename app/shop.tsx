@@ -3,6 +3,10 @@
 //Font by 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Bounce, toast, ToastContainer } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.min.css';
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
 
 type Product = {
   id: number
@@ -52,15 +56,44 @@ const products: Product[] = [
   }
 ]
 
+
+
 export default function Page() {
-  
+
+  const router = useRouter()
+  const backToStart = ()=>{
+    router.push("/")
+  }
+  useEffect(() => {
+  console.log("mount")
+  const timer = setInterval(() => {
+        console.log("test")
+        let navBack = true;
+        toast.info('Navigating back to start. Click to cancel', {
+          position: "top-left",
+          autoClose: 3000,
+          hideProgressBar: false,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+          onClick: ()=>{navBack = false},
+          onClose: ()=>{if(navBack){backToStart()}}
+          });
+      }, 7000)
+  return function cleanup() {
+    console.log("cleanup")
+    clearInterval(timer)
+  }  
+  })
   return (
     <div className="h-screen bg-cover bg-center" style={{backgroundImage: "url('images/earthboundBackground.gif')"}}>
       <div className="container mx-auto py-8">
         <h1 className="text-3xl font-bold mb-8 text-center font-[family-name:var(--font-saturn)] text-xs">Welcome to Our Shop</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
-            <Card key={product.id} className="flex flex-col">
+            <Card key={product.id} className="flex flex-col pl-12 pr--5 pt-10">
               <CardHeader>
                 <CardTitle className="font-[family-name:var(--font-saturn)] text-slate-100">{product.name}</CardTitle>
               </CardHeader>
