@@ -3,9 +3,9 @@
 //Font by 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Bounce, toast, ToastContainer } from "react-toastify"
+import { Bounce, toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.min.css';
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 
 type Product = {
